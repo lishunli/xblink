@@ -1,3 +1,0 @@
-#summary Tutorial
-
-<h1 align="center">align="center"2分钟教会你如何使用XBlink<h1>
