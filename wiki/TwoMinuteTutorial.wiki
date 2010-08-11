@@ -96,14 +96,14 @@ XBlink.toXml("C:/joe.xml", joe);
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <person firstname="Joe" lastname="Walnes">
-  <phonenumber>
+  <phone>
     <code>123</code>
     <number>1234-456</number>
-  </phonenumber>
-  <phonenumber>
+  </phone>
+  <fax>
     <code>123</code>
     <number>9999-999</number>
-  </phonenumber>
+  </fax>
 </person>
 }}}
 
