@@ -1,3 +1,5 @@
+#summary BasicTutorial
+
 = 2分钟教会你使用XBlink =
 = <font color="#003D79">Two Minute Tutorial</font> =
 
