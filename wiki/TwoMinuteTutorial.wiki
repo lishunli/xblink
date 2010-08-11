@@ -68,16 +68,18 @@ public class PhoneNumber {
 <font color="#003D79">Let's create an instance of Person and populate its fields:</font>
 
 {{{
-Person joe = new Person();
-joe.setFirstname("Joe");
-joe.setLastname("Walnes");
 PhoneNumber phone = new PhoneNumber();
 phone.setCode(123);
 phone.setNumber("1234-456");
-joe.setPhone(phone);
+
 PhoneNumber fax = new PhoneNumber();
 fax.setCode(123);
 fax.setNumber("9999-999");
+
+Person joe = new Person();
+joe.setFirstname("Joe");
+joe.setLastname("Walnes");
+joe.setPhone(phone);
 joe.setFax(fax);
 }}}
 
