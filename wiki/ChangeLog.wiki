@@ -1,4 +1,4 @@
-#summary One-sentence 版本历史
+#summary 版本历史
 
 = 版本历史 =
 
