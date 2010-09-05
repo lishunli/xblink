@@ -35,7 +35,7 @@
 	private String name;
 }}}
 
-编译期是不会报错的，序列化反序列化也会正常使用。但运行时，会选取其中的某一个（根据XBlink内置的一个顺序来选择）注解类型来作为解析格式，因此很难保证得到的XML文件的格式是你想要的结果。
+编译期是不会报错的，而且序列化反序列化也会正常使用。但运行时，会选取其中的某一个（根据XBlink内置的一个顺序来选择）注解类型来作为解析格式，因此很难保证得到的XML文件的格式是你想要的结果。
 因此，尽量不要这样使用。一个字段请保持使用一种解析格式的注解。
 
 6.	XML文件中你经常会看到这样的结构：
@@ -103,6 +103,7 @@ Child：两个简单字段
 {{{
 	@XBlinkAsAttribute
 	private String name;
+
 	@XBlinkAsAttribute
 	private int age;
 }}}
@@ -113,6 +114,7 @@ Child：两个简单字段
 	Child child = new Child();
 	child.setName("Tom");
 	child.setAge(10);
+
 	XBlink.toXml("C:/Tom.xml", child);
 }}}
 
@@ -133,6 +135,7 @@ Child：两个简单字段
 {{{
 	@XBlinkAsElement
 	private String name;
+
 	@XBlinkAsElement
 	private int age;
 }}}
@@ -143,6 +146,7 @@ Child：两个简单字段
 	Child child = new Child();
 	child.setName("Tom");
 	child.setAge(10);
+
 	XBlink.toXml("C:/Tom.xml", child);
 }}}
 
@@ -166,10 +170,13 @@ Parent中加入如下注解：
 {{{
 	@XBlinkAsAttribute
 	private String name;
+
 	@XBlinkAsAttribute
 	private int age;
+
 	@XBlinkAsElement
 	private Date birthday;
+
 	@XBlinkAsObject
 	private Child child;
 }}}
@@ -179,6 +186,7 @@ Child中加入如下注解：
 {{{
 	@XBlinkAsElement
 	private String name;
+
 	@XBlinkAsElement
 	private int age;
 }}}
@@ -189,11 +197,13 @@ Child中加入如下注解：
 	Child child = new Child();
 	child.setName("Tom");
 	child.setAge(10);
+
 	Parent parent = new Parent();
 	parent.setName("Old Tom");
 	parent.setAge(30);
 	parent.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("2010-09-05"));
 	parent.setChild(child);
+
 	XBlink.toXml("C:/OldTom.xml", parent);
 }}}
 
@@ -219,6 +229,7 @@ Parent中加入如下注解：
 {{{
 	@XBlinkAsAttribute
 	private String name;
+
 	@XBlinkAsArray
 	private Child[] childArray;
 }}}
@@ -228,6 +239,7 @@ Child中加入如下注解：
 {{{
 	@XBlinkAsElement
 	private String name;
+
 	@XBlinkAsElement
 	private int age;
 }}}
@@ -238,13 +250,17 @@ Child中加入如下注解：
 	Child child1 = new Child();
 	child1.setName("Tom");
 	child1.setAge(10);
+
 	Child child2 = new Child();
 	child2.setName("Jerry");
 	child2.setAge(8);
+
 	Child[] childArray = new Child[] { child1, child2 };
+
 	Parent parent = new Parent();
 	parent.setName("Old Tom");
 	parent.setChildArray(childArray);
+
 	XBlink.toXml("C:/OldTom.xml", parent);
 }}}
 
@@ -276,6 +292,7 @@ Parent中加入如下注解：
 {{{
 	@XBlinkAsAttribute
 	private String name;
+
 	@XBlinkAsList
 	private List<Child> childList;
 }}}
@@ -285,6 +302,7 @@ Child中加入如下注解：
 {{{
 	@XBlinkAsElement
 	private String name;
+
 	@XBlinkAsElement
 	private int age;
 }}}
@@ -295,15 +313,19 @@ Child中加入如下注解：
 	Child child1 = new Child();
 	child1.setName("Tom");
 	child1.setAge(10);
+
 	Child child2 = new Child();
 	child2.setName("Jerry");
 	child2.setAge(8);
+
 	List childList = new ArrayList<Child>();
 	childList.add(child1);
 	childList.add(child2);
+
 	Parent parent = new Parent();
 	parent.setName("Old Tom");
 	parent.setChildList(childList);
+
 	XBlink.toXml("C:/OldTom.xml", parent);
 }}}
 
@@ -335,6 +357,7 @@ Parent中加入如下注解：
 {{{
 	@XBlinkAsAttribute
 	private String name;
+
 	@XBlinkAsSet
 	private Set<Child> childSet;
 }}}
@@ -344,6 +367,7 @@ Child中加入如下注解：
 {{{
 	@XBlinkAsElement
 	private String name;
+
 	@XBlinkAsElement
 	private int age;
 }}}
@@ -354,15 +378,19 @@ Child中加入如下注解：
 	Child child1 = new Child();
 	child1.setName("Tom");
 	child1.setAge(10);
+
 	Child child2 = new Child();
 	child2.setName("Jerry");
 	child2.setAge(8);
+
 	Set childSet = new HashSet<Child>();
 	childSet.add(child1);
 	childSet.add(child2);
+
 	Parent parent = new Parent();
 	parent.setName("Old Tom");
 	parent.setChildSet(childSet);
+
 	XBlink.toXml("C:/OldTom.xml", parent);
 }}}
 
@@ -393,9 +421,11 @@ Child中加入如下注解：
 {{{
 	@XBlinkAlias("孩子")
 	public class Child {
+
 		@XBlinkAlias("姓名")
 		@XBlinkAsElement
 		private String name;
+
 		@XBlinkAlias("年龄")
 		@XBlinkAsElement
 		private int age;
@@ -408,6 +438,7 @@ Child中加入如下注解：
 	Child child = new Child();
 	child.setName("Tom");
 	child.setAge(10);
+
 	XBlink.toXml("C:/Tom.xml", child);
 }}}
 
@@ -429,15 +460,19 @@ Parent加入如下注释：
 {{{
 	@XBlinkAlias("父亲")
 	public class Parent {
+
 		@XBlinkAlias("姓名")
 		@XBlinkAsAttribute
 		private String name;
+
 		@XBlinkAlias("年龄")
 		@XBlinkAsAttribute
 		private int age;
+
 		@XBlinkAlias("小孩子")
 		@XBlinkAsObject
 		private Child child;
+
 		@XBlinkAlias("小孩子们")
 		@XBlinkAsSet
 		private Set<Child> childSet;
@@ -449,9 +484,11 @@ Child加入如下注释：
 {{{
 	@XBlinkAlias("孩子")
 	public class Child {
+
 		@XBlinkAlias("姓名")
 		@XBlinkAsElement
 		private String name;
+
 		@XBlinkAlias("年龄")
 		@XBlinkAsElement
 		private int age;
@@ -464,20 +501,25 @@ Child加入如下注释：
 	Child child1 = new Child();
 	child1.setName("Tom");
 	child1.setAge(10);
+
 	Child child2 = new Child();
 	child2.setName("Jerry");
 	child2.setAge(8);
+
 	Child child3 = new Child();
 	child3.setName("Charlie");
 	child3.setAge(2);
+
 	Set childSet = new HashSet<Child>();
 	childSet.add(child1);
 	childSet.add(child2);
+
 	Parent parent = new Parent();
 	parent.setName("Old Tom");
 	parent.setAge(30);
 	parent.setChild(child3);
 	parent.setChildSet(childSet);
+
 	XBlink.toXml("C:/OldTom.xml", parent);
 }}}
 
@@ -537,6 +579,7 @@ Child加入如下注释：
 {{{
 	@XBlinkAsAttribute
 	private String name;
+
 	@XBlinkNotSerialize
 	@XBlinkAsAttribute
 	private int age;
@@ -548,6 +591,7 @@ Child加入如下注释：
 	Child child = new Child();
 	child.setName("Tom");
 	child.setAge(10);
+
 	XBlink.toXml("C:/Tom.xml", child);
 }}}
 
