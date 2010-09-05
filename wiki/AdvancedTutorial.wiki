@@ -527,3 +527,36 @@ Child加入如下注释：
 	  	  </childSet-set>
 }}}
 	这时如果有别名，这层增加的节点名称为该别名。
+
+----
+== XBlinkNotSerialize ==
+== <font color="#003D79">该字段不进行序列化</font> ==
+
+以Child为例，加入如下注解：
+
+{{{
+	@XBlinkAsAttribute
+	private String name;
+	@XBlinkNotSerialize
+	@XBlinkAsAttribute
+	private int age;
+}}}
+
+测试用例：
+
+{{{
+	Child child = new Child();
+	child.setName("Tom");
+	child.setAge(10);
+	XBlink.toXml("C:/Tom.xml", child);
+}}}
+
+结果：
+
+{{{
+	<?xml version="1.0" encoding="UTF-8"?>
+	<child name="Tom">
+	</child>
+}}}
+
+可以看到age字段没有被序列化。
