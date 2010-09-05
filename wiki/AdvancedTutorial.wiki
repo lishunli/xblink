@@ -30,9 +30,9 @@
 如图：
 
 {{{
-@XBlinkAsAttribute
-@XBlinkAsElement
-private String name;
+	@XBlinkAsAttribute
+	@XBlinkAsElement
+	private String name;
 }}}
 
 编译期是不会报错的，序列化反序列化也会正常使用。但运行时，会选取其中的某一个（根据XBlink内置的一个顺序来选择）注解类型来作为解析格式，因此很难保证得到的XML文件的格式是你想要的结果。
@@ -41,14 +41,14 @@ private String name;
 6.	XML文件中你经常会看到这样的结构：
 
 {{{
-<child name="Tom" age="10">
-</child>
+	<child name="Tom" age="10">
+	</child>
 }}}
 
 	但是更加理想的结果应该是：
 
 {{{
-<child name="Tom" age="10"/>
+	<child name="Tom" age="10"/>
 }}}
 
 这里算是目前版本的一个小缺陷吧，上面那种结构是为了方便在节点下加入子节点，可以说是预留了位置。将来的版本会判断是否有子节点，采用下面那种更简洁的方式。
@@ -61,37 +61,37 @@ private String name;
 Parent：三个简单字段，一个对象字段，三个集合字段(因为Map暂时没有实现，所以先略过)
 
 {{{
-public class Parent {
+	public class Parent {
 
-	private String name;
+		private String name;
 
-	private int age;
+		private int age;
 
-	private Date birthday;
+		private Date birthday;
 
-	private Child child;
+		private Child child;
 
-	private Child[] childArray;
+		private Child[] childArray;
 
-	private List<Child> childList;
+		private List<Child> childList;
 
-	private Set<Child> childSet;
+		private Set<Child> childSet;
 
-	// 省略 setter 和 getter
-}
+		// 省略 setter 和 getter
+	}
 }}}
 
 Child：两个简单字段
 
 {{{
-public class Child {
+	public class Child {
 
-	private String name;
+		private String name;
 
-	private int age;
+		private int age;
 
-	// 省略 setter 和 getter
-}
+		// 省略 setter 和 getter
+	}
 }}}
 
 ----
@@ -119,9 +119,9 @@ public class Child {
 结果：
 
 {{{
-<?xml version="1.0" encoding="UTF-8"?>
-<child name="Tom" age="10">
-</child>
+	<?xml version="1.0" encoding="UTF-8"?>
+	<child name="Tom" age="10">
+	</child>
 }}}
 
 ----
@@ -130,32 +130,40 @@ public class Child {
 
 以Child为例，加入如下注解：
 
+{{{
 	@XBlinkAsElement
 	private String name;
 	@XBlinkAsElement
 	private int age;
+}}}
 
 测试用例：
 
+{{{
 	Child child = new Child();
 	child.setName("Tom");
 	child.setAge(10);
 	XBlink.toXml("C:/Tom.xml", child);
+}}}
 
 结果：
 
+{{{
 	<?xml version="1.0" encoding="UTF-8"?>
 	<child>
 	  <name>Tom</name>
 	  <age>10</age>
 	</child>
+}}}
 
-XBlinkAsObject
-该字段作为子节点进行序列化
+----
+== XBlinkAsObject ==
+== <font color="#003D79">该字段作为子节点进行序列化</font> ==
 
 以Parent和Child为例，
 	Parent中加入如下注解：
 
+{{{
 	@XBlinkAsAttribute
 	private String name;
 	@XBlinkAsAttribute
@@ -164,16 +172,20 @@ XBlinkAsObject
 	private Date birthday;
 	@XBlinkAsObject
 	private Child child;
+}}}
 
 Child中加入如下注解：
 
+{{{
 	@XBlinkAsElement
 	private String name;
 	@XBlinkAsElement
 	private int age;
+}}}
 
 测试用例：
 
+{{{
 	Child child = new Child();
 	child.setName("Tom");
 	child.setAge(10);
@@ -183,9 +195,10 @@ Child中加入如下注解：
 	parent.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("2010-09-05"));
 	parent.setChild(child);
 	XBlink.toXml("C:/OldTom.xml", parent);
+}}}
 
 结果：
-
+{{{
 	<?xml version="1.0" encoding="UTF-8"?>
 	<parent name="Old Tom" age="30">
 	  <birthday>Sun Sep 05 00:00:00 CST 2010</birthday>
@@ -194,27 +207,34 @@ Child中加入如下注解：
 	    <age>10</age>
 	  </child>
 	</parent>
+}}}
 
-XblinkAsArray
-该字段作为数组进行序列化
+----
+== XblinkAsArray ==
+== <font color="#003D79">该字段作为数组进行序列化</font> ==
 
 以Parent和Child为例，
-	Parent中加入如下注解：
+Parent中加入如下注解：
 
+{{{
 	@XBlinkAsAttribute
 	private String name;
 	@XBlinkAsArray
 	private Child[] childArray;
+}}}
 
 Child中加入如下注解：
 
+{{{
 	@XBlinkAsElement
 	private String name;
 	@XBlinkAsElement
 	private int age;
+}}}
 
 测试用例：
 
+{{{
 	Child child1 = new Child();
 	child1.setName("Tom");
 	child1.setAge(10);
@@ -226,9 +246,11 @@ Child中加入如下注解：
 	parent.setName("Old Tom");
 	parent.setChildArray(childArray);
 	XBlink.toXml("C:/OldTom.xml", parent);
+}}}
 
 结果：
 
+{{{
 	<?xml version="1.0" encoding="UTF-8"?>
 	<parent name="Old Tom" age="0">
 	  <childArray-array>
@@ -242,27 +264,34 @@ Child中加入如下注解：
 	    </child>
 	  </childArray-array>
 	</parent>
+}}}
 
-XblinkAsList
-该字段作为列表进行序列化
+----
+== XblinkAsList ==
+== <font color="#003D79">该字段作为列表进行序列化</font> ==
 
 以Parent和Child为例，
-	Parent中加入如下注解：
+Parent中加入如下注解：
 
+{{{
 	@XBlinkAsAttribute
 	private String name;
 	@XBlinkAsList
 	private List<Child> childList;
+}}}
 
 Child中加入如下注解：
 
+{{{
 	@XBlinkAsElement
 	private String name;
 	@XBlinkAsElement
 	private int age;
+}}}
 
 测试用例：
 
+{{{
 	Child child1 = new Child();
 	child1.setName("Tom");
 	child1.setAge(10);
@@ -276,9 +305,11 @@ Child中加入如下注解：
 	parent.setName("Old Tom");
 	parent.setChildList(childList);
 	XBlink.toXml("C:/OldTom.xml", parent);
+}}}
 
 结果：
 
+{{{
 	<?xml version="1.0" encoding="UTF-8"?>
 	<parent name="Old Tom" age="0">
 	  <childList-list>
@@ -292,27 +323,34 @@ Child中加入如下注解：
 	    </child>
 	  </childList-list>
 	</parent>
+}}}
 
-XblinkAsSet
-该字段作为Set进行序列化
+----
+== XblinkAsSet ==
+== <font color="#003D79">该字段作为Set进行序列化</font> ==
 
 以Parent和Child为例，
-	Parent中加入如下注解：
+Parent中加入如下注解：
 
+{{{
 	@XBlinkAsAttribute
 	private String name;
 	@XBlinkAsSet
 	private Set<Child> childSet;
+}}}
 
 Child中加入如下注解：
 
+{{{
 	@XBlinkAsElement
 	private String name;
 	@XBlinkAsElement
 	private int age;
+}}}
 
 测试用例：
 
+{{{
 	Child child1 = new Child();
 	child1.setName("Tom");
 	child1.setAge(10);
@@ -326,9 +364,11 @@ Child中加入如下注解：
 	parent.setName("Old Tom");
 	parent.setChildSet(childSet);
 	XBlink.toXml("C:/OldTom.xml", parent);
+}}}
 
 结果：
 
+{{{
 	<?xml version="1.0" encoding="UTF-8"?>
 	<parent name="Old Tom" age="0">
 	  <childSet-set>
@@ -342,12 +382,15 @@ Child中加入如下注解：
 	    </child>
 	  </childSet-set>
 	</parent>
+}}}
 
-XBlinkAlias
-用来定义别名
+----
+== XBlinkAlias==
+== <font color="#003D79">用来定义别名</font> ==
 
 以Child为例，加入如下注释：
 
+{{{
 	@XBlinkAlias("孩子")
 	public class Child {
 		@XBlinkAlias("姓名")
@@ -357,26 +400,33 @@ XBlinkAlias
 		@XBlinkAsElement
 		private int age;
 	}
+}}}
 
 测试用例：
 
+{{{
 	Child child = new Child();
 	child.setName("Tom");
 	child.setAge(10);
 	XBlink.toXml("C:/Tom.xml", child);
+}}}
 
 结果：
 
+{{{
 	<?xml version="1.0" encoding="UTF-8"?>
 	<孩子>
 	  <姓名>Tom</姓名>
 	  <年龄>10</年龄>
 	</孩子>
+}}}
 
-用来定义别名
+另一个复杂点的例子：
 
 以Parent和Child为例，加入如下注释：
-	Parent加入如下注释：
+Parent加入如下注释：
+
+{{{
 	@XBlinkAlias("父亲")
 	public class Parent {
 		@XBlinkAlias("姓名")
@@ -391,10 +441,13 @@ XBlinkAlias
 		@XBlinkAlias("小孩子们")
 		@XBlinkAsSet
 		private Set<Child> childSet;
-}
+	}
+}}}
 
-	Child加入如下注释：
-@XBlinkAlias("孩子")
+Child加入如下注释：
+
+{{{
+	@XBlinkAlias("孩子")
 	public class Child {
 		@XBlinkAlias("姓名")
 		@XBlinkAsElement
@@ -403,30 +456,34 @@ XBlinkAlias
 		@XBlinkAsElement
 		private int age;
 	}
+}}}
 
 测试用例：
 
-		Child child1 = new Child();
-		child1.setName("Tom");
-		child1.setAge(10);
-		Child child2 = new Child();
-		child2.setName("Jerry");
-		child2.setAge(8);
-		Child child3 = new Child();
-		child3.setName("Charlie");
-		child3.setAge(2);
-		Set childSet = new HashSet<Child>();
-		childSet.add(child1);
-		childSet.add(child2);
-		Parent parent = new Parent();
-		parent.setName("Old Tom");
-		parent.setAge(30);
-		parent.setChild(child3);
-		parent.setChildSet(childSet);
-		XBlink.toXml("C:/OldTom.xml", parent);
+{{{
+	Child child1 = new Child();
+	child1.setName("Tom");
+	child1.setAge(10);
+	Child child2 = new Child();
+	child2.setName("Jerry");
+	child2.setAge(8);
+	Child child3 = new Child();
+	child3.setName("Charlie");
+	child3.setAge(2);
+	Set childSet = new HashSet<Child>();
+	childSet.add(child1);
+	childSet.add(child2);
+	Parent parent = new Parent();
+	parent.setName("Old Tom");
+	parent.setAge(30);
+	parent.setChild(child3);
+	parent.setChildSet(childSet);
+	XBlink.toXml("C:/OldTom.xml", parent);
+}}}
 
 结果：
 
+{{{
 	<?xml version="1.0" encoding="UTF-8"?>
 	<父亲 姓名="Old Tom" 年龄="30">
 	  <小孩子>
@@ -444,13 +501,19 @@ XBlinkAlias
 	    </孩子>
 	  </小孩子们>
 	</父亲>
+}}}
 
 根据上面两个例子来总结下：
 1.	在类上使用XBlinkAlias注解时，这个类的对象如果是作为根节点，序列化时的节点名称就是该别名，如果是子节点，只有在集合类型中，节点名才是该别名。
+
 2.	在字段是使用XBlinkAlias注解时，有以下几种情况：
+
 2.1.	使用XBlinkAsAttribute，XBlinkAsElement和XBlinkAsObject的字段，节点名称为该别名。
+
 2.2.	使用XBlinkAsArray，XBlinkAsList，XBlinkAsSet和XBlinkAsMap的字段，因为是集合类型，节点会自动增加一层，名称为 xxx-array 或 xxx-list 等。
 例如Set集合，ChildSet：
+
+{{{
 	  	  <childSet-set>
 	    		<child>
 	      		<name>Tom</name>
@@ -461,4 +524,5 @@ XBlinkAlias
 	     		 <age>8</age>
 	    		</child>
 	  	  </childSet-set>
+}}}
 这时如果有别名，这层增加的节点名称为该别名。
