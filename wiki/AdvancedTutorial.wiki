@@ -94,31 +94,39 @@ public class Child {
 }
 }}}
 
+----
 == XblinkAsAttribute ==
-该字段作为属性进行序列化
+== <font color="#003D79">该字段作为属性进行序列化</font> ==
 
 以Child为例，加入如下注解：
 
+{{{
 	@XBlinkAsAttribute
 	private String name;
 	@XBlinkAsAttribute
 	private int age;
+}}}
 
 测试用例：
 
+{{{
 	Child child = new Child();
 	child.setName("Tom");
 	child.setAge(10);
 	XBlink.toXml("C:/Tom.xml", child);
+}}}
 
 结果：
 
+{{{
 <?xml version="1.0" encoding="UTF-8"?>
 <child name="Tom" age="10">
 </child>
+}}}
 
-XblinkAsElement
-该字段作为元素进行序列化.
+----
+== XblinkAsElement ==
+== <font color="#003D79">该字段作为元素进行序列化</font> ==
 
 以Child为例，加入如下注解：
 
