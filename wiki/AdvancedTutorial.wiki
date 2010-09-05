@@ -95,7 +95,7 @@ Child：两个简单字段
 }}}
 
 ----
-== XblinkAsAttribute ==
+== XBlinkAsAttribute ==
 == <font color="#003D79">该字段作为属性进行序列化</font> ==
 
 以Child为例，加入如下注解：
@@ -161,7 +161,7 @@ Child：两个简单字段
 == <font color="#003D79">该字段作为子节点进行序列化</font> ==
 
 以Parent和Child为例，
-	Parent中加入如下注解：
+Parent中加入如下注解：
 
 {{{
 	@XBlinkAsAttribute
@@ -210,7 +210,7 @@ Child中加入如下注解：
 }}}
 
 ----
-== XblinkAsArray ==
+== XBlinkAsArray ==
 == <font color="#003D79">该字段作为数组进行序列化</font> ==
 
 以Parent和Child为例，
@@ -267,7 +267,7 @@ Child中加入如下注解：
 }}}
 
 ----
-== XblinkAsList ==
+== XBlinkAsList ==
 == <font color="#003D79">该字段作为列表进行序列化</font> ==
 
 以Parent和Child为例，
@@ -326,7 +326,7 @@ Child中加入如下注解：
 }}}
 
 ----
-== XblinkAsSet ==
+== XBlinkAsSet ==
 == <font color="#003D79">该字段作为Set进行序列化</font> ==
 
 以Parent和Child为例，
@@ -385,7 +385,7 @@ Child中加入如下注解：
 }}}
 
 ----
-== XBlinkAlias==
+== XBlinkAsAlias ==
 == <font color="#003D79">用来定义别名</font> ==
 
 以Child为例，加入如下注释：
@@ -504,14 +504,15 @@ Child加入如下注释：
 }}}
 
 根据上面两个例子来总结下：
+
 1.	在类上使用XBlinkAlias注解时，这个类的对象如果是作为根节点，序列化时的节点名称就是该别名，如果是子节点，只有在集合类型中，节点名才是该别名。
 
 2.	在字段是使用XBlinkAlias注解时，有以下几种情况：
 
-2.1.	使用XBlinkAsAttribute，XBlinkAsElement和XBlinkAsObject的字段，节点名称为该别名。
+	2.1.	使用XBlinkAsAttribute，XBlinkAsElement和XBlinkAsObject的字段，节点名称为该别名。
 
-2.2.	使用XBlinkAsArray，XBlinkAsList，XBlinkAsSet和XBlinkAsMap的字段，因为是集合类型，节点会自动增加一层，名称为 xxx-array 或 xxx-list 等。
-例如Set集合，ChildSet：
+	2.2.	使用XBlinkAsArray，XBlinkAsList，XBlinkAsSet和XBlinkAsMap的字段，因为是集合类型，节点会自动增加一层，名称为 xxx-array 或 xxx-list 等。
+	例如Set集合,ChildSet:
 
 {{{
 	  	  <childSet-set>
@@ -525,4 +526,4 @@ Child加入如下注释：
 	    		</child>
 	  	  </childSet-set>
 }}}
-这时如果有别名，这层增加的节点名称为该别名。
+	这时如果有别名，这层增加的节点名称为该别名。
