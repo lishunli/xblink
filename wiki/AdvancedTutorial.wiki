@@ -125,7 +125,7 @@ Child：两个简单字段
 }}}
 
 ----
-== XblinkAsElement ==
+== XBlinkAsElement ==
 == <font color="#003D79">该字段作为元素进行序列化</font> ==
 
 以Child为例，加入如下注解：
@@ -512,7 +512,7 @@ Child加入如下注释：
 	2.1.	使用XBlinkAsAttribute，XBlinkAsElement和XBlinkAsObject的字段，节点名称为该别名。
 
 	2.2.	使用XBlinkAsArray，XBlinkAsList，XBlinkAsSet和XBlinkAsMap的字段，因为是集合类型，节点会自动增加一层，名称为 xxx-array 或 xxx-list 等。
-	例如Set集合,ChildSet:
+	例如Set集合,一个ChildSet，序列化结果如下：
 
 {{{
 	  	  <childSet-set>
