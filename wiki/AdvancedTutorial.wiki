@@ -13,7 +13,7 @@
 
 2.	不解析。只有一个XBlinkNotSerialize注解，它只能作用于字段上。被添加了这个注解的字段将不被解析。
 
-3.	解析格式。除了XBlinkAlias和XBlinkNotSerialize其他所有注解。规定了某个字段将以什么样的格式进行解析。
+3.	解析格式。除了XBlinkAlias和XBlinkNotSerialize其他所有注解，只能作用于字段上。规定了某个字段将以什么样的格式进行解析。
 
 ----
 == 注解使用的注意事项 ==
