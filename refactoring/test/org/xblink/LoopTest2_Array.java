@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.xblink.core.XBlink;
 import org.xblink.model.loop2.ObjectA;
 import org.xblink.model.loop2.ObjectB;
 import org.xblink.util.WatchTimer;
@@ -83,10 +84,10 @@ public class LoopTest2_Array {
 		// XBlink
 		System.out.println("XBlink:");
 		WatchTimer timer = new WatchTimer();
-		XBlink.toXml("C:/objectA_XBlink_Loop2_Array.xml", objectA);
+		XBlink.serialize("C:/objectA_XBlink_Loop2_Array.xml", objectA);
 		System.out.println("序列化：" + timer.getTimer());
 		timer.reset();
-		ObjectA objA_XB = (ObjectA) XBlink.fromXml("C:/objectA_XBlink_Loop2_Array.xml", ObjectA.class);
+		ObjectA objA_XB = (ObjectA) XBlink.deserialize("C:/objectA_XBlink_Loop2_Array.xml", ObjectA.class);
 		System.out.println("反序列化：" + timer.getTimer());
 
 		System.out.println();

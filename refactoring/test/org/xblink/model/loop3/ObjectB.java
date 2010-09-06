@@ -1,7 +1,7 @@
 package org.xblink.model.loop3;
 
-import org.xblink.annotations.XBlinkAlias;
-import org.xblink.annotations.XBlinkAsObject;
+import org.xblink.api.annotations.XBlinkAlias;
+import org.xblink.api.annotations.XBlinkAsObject;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XBlinkAlias("objectB")

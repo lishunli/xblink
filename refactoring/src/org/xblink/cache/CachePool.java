@@ -15,4 +15,7 @@ public class CachePool {
 	public static void setCache(String cacheName, Cache cache){
 		cacheMap.put(cacheName, cache);
 	}
+	public static void clearAll(){
+		cacheMap.clear();
+	}
 }

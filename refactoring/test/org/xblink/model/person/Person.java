@@ -1,7 +1,7 @@
 package org.xblink.model.person;
 
-import org.xblink.annotations.XBlinkAsAttribute;
-import org.xblink.annotations.XBlinkAsObject;
+import org.xblink.api.annotations.XBlinkAsAttribute;
+import org.xblink.api.annotations.XBlinkAsObject;
 
 public class Person {
 	@XBlinkAsAttribute

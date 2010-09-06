@@ -1,8 +1,8 @@
 package org.xblink.model.loop2;
 
-import org.xblink.annotations.XBlinkAlias;
-import org.xblink.annotations.XBlinkAsAttribute;
-import org.xblink.annotations.XBlinkAsObject;
+import org.xblink.api.annotations.XBlinkAlias;
+import org.xblink.api.annotations.XBlinkAsAttribute;
+import org.xblink.api.annotations.XBlinkAsObject;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;

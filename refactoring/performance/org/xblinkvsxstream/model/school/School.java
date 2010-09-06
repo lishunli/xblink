@@ -3,9 +3,9 @@ package org.xblinkvsxstream.model.school;
 import java.util.Date;
 import java.util.List;
 
-import org.xblink.annotations.XBlinkAlias;
-import org.xblink.annotations.XBlinkAsAttribute;
-import org.xblink.annotations.XBlinkAsList;
+import org.xblink.api.annotations.XBlinkAlias;
+import org.xblink.api.annotations.XBlinkAsAttribute;
+import org.xblink.api.annotations.XBlinkAsList;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;

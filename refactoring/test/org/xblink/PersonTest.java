@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 
 import org.junit.Test;
+import org.xblink.core.XBlink;
 import org.xblink.model.person.Person;
 import org.xblink.model.person.PhoneNumber;
 
@@ -26,13 +27,13 @@ public class PersonTest {
 		joe.setPhone(phone);
 		joe.setFax(fax);
 
-		XBlink.toXml("C:/joe.xml", joe);
+		XBlink.serialize("C:/joe.xml", joe);
 		assertTrue(new File("C:/joe.xml").exists());
 	}
 
 	@Test
 	public void testFromXml() throws Exception {
-		Person joe = (Person) XBlink.fromXml("C:/joe.xml", Person.class);
+		Person joe = (Person) XBlink.deserialize("C:/joe.xml", Person.class);
 		assertTrue(joe != null);
 		assertTrue(joe.getFirstname().equals("Joe"));
 		assertTrue(joe.getLastname().equals("Walnes"));

@@ -5,9 +5,10 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import org.junit.Test;
-import org.xblink.XBlink;
-import org.xblink.types.XArray;
-import org.xblink.types.XAttribute;
+import org.xblink.core.XBlink;
+import org.xblink.core.types.XArray;
+import org.xblink.core.types.XAttribute;
+import org.xblink.core.util.ClassScannerUtil;
 
 public class ClassScannerTest extends TestCase {
 

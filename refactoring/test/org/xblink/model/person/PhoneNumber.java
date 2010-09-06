@@ -1,6 +1,6 @@
 package org.xblink.model.person;
 
-import org.xblink.annotations.XBlinkAsElement;
+import org.xblink.api.annotations.XBlinkAsElement;
 
 public class PhoneNumber {
 	@XBlinkAsElement

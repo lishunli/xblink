@@ -2,7 +2,7 @@ package org.xblink.model.doubleList;
 
 import java.util.List;
 
-import org.xblink.annotations.XBlinkAsList;
+import org.xblink.api.annotations.XBlinkAsList;
 
 public class DoubleList {
 

@@ -3,10 +3,10 @@ package org.xblink.model.loop2;
 import java.util.List;
 import java.util.Set;
 
-import org.xblink.annotations.XBlinkAlias;
-import org.xblink.annotations.XBlinkAsArray;
-import org.xblink.annotations.XBlinkAsList;
-import org.xblink.annotations.XBlinkAsSet;
+import org.xblink.api.annotations.XBlinkAlias;
+import org.xblink.api.annotations.XBlinkAsArray;
+import org.xblink.api.annotations.XBlinkAsList;
+import org.xblink.api.annotations.XBlinkAsSet;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 

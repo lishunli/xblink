@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.xblink.core.XBlink;
 import org.xblink.model.loop3.ObjectA;
 import org.xblink.model.loop3.ObjectB;
 import org.xblink.model.loop3.ObjectC;
@@ -59,10 +60,10 @@ public class LoopTest3 {
 		// XBlink
 		System.out.println("XBlink:");
 		timer.reset();
-		XBlink.toXml("C:/objectA_XBlink.xml", root);
+		XBlink.serialize("C:/objectA_XBlink.xml", root);
 		System.out.println("序列化：" + timer.getTimer());
 		timer.reset();
-		Root root2 = (Root) XBlink.fromXml("C:/objectA_XBlink.xml", Root.class);
+		Root root2 = (Root) XBlink.deserialize("C:/objectA_XBlink.xml", Root.class);
 		System.out.println("反序列化：" + timer.getTimer());
 
 		System.out.println();

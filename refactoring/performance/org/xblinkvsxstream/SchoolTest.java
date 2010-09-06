@@ -12,7 +12,7 @@ import java.util.Set;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.xblink.XBlink;
+import org.xblink.core.XBlink;
 import org.xblink.util.WatchTimer;
 import org.xblinkvsxstream.model.SchoolFactory;
 import org.xblinkvsxstream.model.school.Grade;
@@ -90,10 +90,10 @@ public class SchoolTest {
 		// XBlink
 		System.out.println("XBlink:");
 		timer.reset();
-		XBlink.toXml("C:/singleSchool_XBlink.xml", singleSchool);
+		XBlink.serialize("C:/singleSchool_XBlink.xml", singleSchool);
 		System.out.println("序列化：" + timer.getTimer());
 		timer.reset();
-		XBlink.fromXml("C:/singleSchool_XBlink.xml", School.class);
+		XBlink.deserialize("C:/singleSchool_XBlink.xml", School.class);
 		System.out.println("反序列化：" + timer.getTimer());
 
 		System.out.println();
@@ -121,10 +121,10 @@ public class SchoolTest {
 		// XBlink
 		System.out.println("XBlink:");
 		timer.reset();
-		XBlink.toXml("C:/schoolArray_XBlink.xml", schoolArray);
+		XBlink.serialize("C:/schoolArray_XBlink.xml", schoolArray);
 		System.out.println("序列化：" + timer.getTimer());
 		timer.reset();
-		XBlink.fromXml("C:/schoolArray_XBlink.xml", School.class);
+		XBlink.deserialize("C:/schoolArray_XBlink.xml", School.class);
 		System.out.println("反序列化：" + timer.getTimer());
 
 		System.out.println();
@@ -152,10 +152,10 @@ public class SchoolTest {
 		// XBlink
 		System.out.println("XBlink:");
 		timer.reset();
-		XBlink.toXml("C:/schoolList_XBlink.xml", schoolList);
+		XBlink.serialize("C:/schoolList_XBlink.xml", schoolList);
 		System.out.println("序列化：" + timer.getTimer());
 		timer.reset();
-		XBlink.fromXml("C:/schoolList_XBlink.xml", School.class);
+		XBlink.deserialize("C:/schoolList_XBlink.xml", School.class);
 		System.out.println("反序列化：" + timer.getTimer());
 
 		System.out.println();
@@ -183,10 +183,10 @@ public class SchoolTest {
 		// XBlink
 		System.out.println("XBlink:");
 		timer.reset();
-		XBlink.toXml("C:/schoolSet_XBlink.xml", schoolSet);
+		XBlink.serialize("C:/schoolSet_XBlink.xml", schoolSet);
 		System.out.println("序列化：" + timer.getTimer());
 		timer.reset();
-		XBlink.fromXml("C:/schoolSet_XBlink.xml", School.class);
+		XBlink.deserialize("C:/schoolSet_XBlink.xml", School.class);
 		System.out.println("反序列化：" + timer.getTimer());
 
 		System.out.println();
