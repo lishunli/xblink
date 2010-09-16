@@ -1,15 +1,20 @@
 #summary 2分钟教会你使用XBlink
 #labels Featured
-
-= 2分钟教会你使用XBlink =
-= <font color="#003D79">Two Minute Tutorial</font> =
-
+=Top=
+<p align="center"><font size=6>* 2分钟教会你使用XBlink *</font></p>
+<p align="center"><font color="#003D79" size=6>* Two Minute Tutorial *</font></p>
+----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *pangwu86* (<font color="#080"> pangwu86@gmail.com </font>)</p>
+<wiki:toc max_depth="1"/>
+----
+<p align="right">[#Top]</p>
 这是一个对XBlink的简短介绍，读完后，你会发现对一个对象进行序列化和将XML反序列化是一件多么简单的事情。
 
 <font color="#003D79">This is a very quick introduction to XBlink. Skim read it to get an idea of how simple it is to convert objects to XML and back again. I'm sure you'll have questions afterwards.</font>
 
 ----
-== 建立要被序列化的类 ==
+<p align="right">[#Top]</p>
+=`建立要被序列化的类`=
 == <font color="#003D79">Create classes to be serialized</font> ==
 
 这里有一些简单的类，XBlink可以对其序列化和反序列化。
@@ -37,7 +42,8 @@ public class PhoneNumber {
 <font color="#003D79">Note: Notice that the fields are private. XBlink doesn't care about the visibility of the fields. No getters or setters are needed.But, XBlink does limit you to having a default constructor. </font>
 
 ----
-== 为字段添加注释 ==
+<p align="right">[#Top]</p>
+=`为字段添加注释`=
 == <font color="#003D79">Add annotation to the field</font> ==
 
 {{{
@@ -63,7 +69,8 @@ public class PhoneNumber {
 }}}
 
 ----
-== 将对象序列化为XML ==
+<p align="right">[#Top]</p>
+=`将对象序列化为XML`=
 == <font color="#003D79">Serializing an object to XML</font> ==
 
 让我们新建一个Person的实例，并为他的字段赋值：
@@ -117,7 +124,8 @@ XBlink.toXml("C:/joe.xml", joe);
 <font color="#003D79">It's that simple. Look at how clean the XML is.</font>
 
 ----
-== 将XML反序列化为对象 ==
+<p align="right">[#Top]</p>
+=`将XML反序列化为对象`=
 == <font color="#003D79">Deserializing an object back from XML</font> ==
 
 根据XML文件中信息，重构这个对象。
