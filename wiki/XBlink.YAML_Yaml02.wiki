@@ -1,9 +1,0 @@
-#summary 高级教程
-=Top=
-<p align="center"><font size=6>* 高级教程 *</font></p>
-----
-<p align="right"> <font color="#AAA" size="1"> * By * </font>    *pangwu86* (<font color="#080"> pangwu86@gmail.com </font>)</p>
-<wiki:toc max_depth="1"/>
-----
-马上就来……
-
