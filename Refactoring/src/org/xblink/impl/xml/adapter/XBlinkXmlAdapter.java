@@ -5,9 +5,12 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.xblink.api.Adapter;
 import org.xblink.core.Element;
+;
 
 public class XBlinkXmlAdapter implements Adapter {
 	//特殊字符标记状态
@@ -16,6 +19,8 @@ public class XBlinkXmlAdapter implements Adapter {
 	private State blankState;
 	private State equleState;
 	private State slashState;
+	//状态机
+	private StateMachine stateMachine = new StateMachine(2);
 	//是否字面值
 	private boolean isLiteral=false;
 	// 文件指针，用来标识当前读取位置
@@ -27,6 +32,8 @@ public class XBlinkXmlAdapter implements Adapter {
 	int buffSize = 1024;
 	byte[] bytes = new byte[buffSize];
 	ByteBuffer byteBuffer = ByteBuffer.allocate(buffSize);
+	//缓存
+	private Element element = new Element();
 	
 	private XBlinkQueue<Character> queue = new XBlinkQueue<Character>();
 	
@@ -36,7 +43,8 @@ public class XBlinkXmlAdapter implements Adapter {
 		tagStartState.setAction(new ActionCallBack() {
 			@Override
 			public void run() {
-				
+				if(stateMachine.getState(0)==tagEndState){
+				}
 			}
 		});
 		
@@ -105,14 +113,14 @@ public class XBlinkXmlAdapter implements Adapter {
 	}
 
 	@Override
-	public void put(Element element) {
+	public String put(Element element) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public void putDone(Element element) {
+	public String putDone(Element element) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 }

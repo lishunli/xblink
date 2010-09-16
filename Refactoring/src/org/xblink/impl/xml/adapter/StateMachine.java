@@ -48,4 +48,12 @@ public class StateMachine {
 			states[pos++]=state;
 		}
 	}
+	/**
+	 * 获取状态机中指定的状态
+	 * @param i 指定状态的位置
+	 * @return 指定的状态
+	 */
+	public State getState(int i){
+		return states[i];
+	}
 }

@@ -42,10 +42,10 @@ public interface Adapter {
 	 * 向流中写入一个元素
 	 * @param element 需要写入到流的Element
 	 */
-	public void put(Element element);
+	public String put(Element element);
 	/**
 	 * 向流中声明写入element完毕
 	 * @param element 写入完成的element
 	 */
-	public void putDone(Element element);
+	public String putDone(Element element);
 }
