@@ -1,3 +1,4 @@
+#sidebar TableOfContents 
  * [Preface 序言]
  * [Trailer 版本预告]
  * 1.0.0版之前
