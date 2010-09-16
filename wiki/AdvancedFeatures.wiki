@@ -1,14 +1,18 @@
 #summary XBlink高级特性
+=Top=
+<p align="center"><font size=6>* XBlink高级特性 *</font></p>
+----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *pangwu86* (<font color="#080"> pangwu86@gmail.com </font>)</p>
+<wiki:toc max_depth="1"/>
 
-= XBlink高级特性 =
-
-这里将告诉你一些你不知道的事情。
-
-下面的例子采用了[http://code.google.com/p/xblink/wiki/AdvancedTutorial XBlink高级教程]里的模型。
 
 ----
-== 除了序列化一个对象，你还可以序列化一堆对象 ==
+下面的例子采用了[http://code.google.com/p/xblink/wiki/AdvancedTutorial XBlink高级教程 ]里的模型。
 
+----
+
+<p align="right">[#Top]</p>
+=`除了序列化一个对象，你还可以序列化一堆对象`=
 以Child为例，加入如下注解：
 
 {{{
@@ -88,16 +92,19 @@
 同样的对于列表，Set，Map等集合类型，也是类似的使用方法，怎么样，很简单吧。
 
 ----
-== 对象中包含了接口怎么办 ==
 
+<p align="right">[#Top]</p>
+=`对象中包含了接口怎么办`=
 马上就来……
 
 ----
-== 对象中存在循环依赖关系怎么办 ==
 
+<p align="right">[#Top]</p>
+=`对象中存在循环依赖关系怎么办`=
 马上就来……
 
 ----
-== OSGi环境下，找不到对象的Class怎么办 ==
 
+<p align="right">[#Top]</p>
+=`OSGi环境下，找不到对象的Class怎么办`=
 马上就来……
