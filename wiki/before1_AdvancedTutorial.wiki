@@ -1,5 +1,4 @@
 #summary XBlink高级教程
-#labels Featured
 =Top=
 <p align="center"><font size=6>* XBlink高级教程 *</font></p>
 ----
