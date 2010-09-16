@@ -1,4 +1,5 @@
 #summary XBlink高级教程
+#labels Featured
 =Top=
 <p align="center"><font size=6>* XBlink高级教程 *</font></p>
 ----
@@ -607,4 +608,3 @@ Child加入如下注释：
 }}}
 
 可以看到age字段没有被序列化。
-
