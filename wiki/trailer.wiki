@@ -1,4 +1,4 @@
-#summary 版本预告
+#summary 发布预告
 =Top=
 <p align="center"><font size=6>* 版本预告 *</font></p>
 ----
