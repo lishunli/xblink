@@ -1,22 +1,22 @@
-#summary 2·ÖÖÓ½Ì»áÄãÊ¹ÓÃXBlink
+#summary 2åˆ†é’Ÿæ•™ä¼šä½ ä½¿ç”¨XBlink
 =Top=
-<p align="center"><font size=6>* 2·ÖÖÓ½Ì»áÄãÊ¹ÓÃXBlink *</font></p>
+<p align="center"><font size=6>* 2åˆ†é’Ÿæ•™ä¼šä½ ä½¿ç”¨XBlink *</font></p>
 <p align="center"><font color="#003D79" size=6>* Two Minute Tutorial *</font></p>
 ----
 <p align="right"> <font color="#AAA" size="1"> * By * </font>    *pangwu86* (<font color="#080"> pangwu86@gmail.com </font>)</p>
 <wiki:toc max_depth="1"/>
 ----
 <p align="right">[#Top]</p>
-ÕâÊÇÒ»¸ö¶ÔXBlinkµÄ¼ò¶Ì½éÉÜ£¬¶ÁÍêºó£¬Äã»á·¢ÏÖ¶ÔÒ»¸ö¶ÔÏó½øĞĞĞòÁĞ»¯ºÍ½«XML·´ĞòÁĞ»¯ÊÇÒ»¼ş¶àÃ´¼òµ¥µÄÊÂÇé¡£
+è¿™æ˜¯ä¸€ä¸ªå¯¹XBlinkçš„ç®€çŸ­ä»‹ç»ï¼Œè¯»å®Œåï¼Œä½ ä¼šå‘ç°å¯¹ä¸€ä¸ªå¯¹è±¡è¿›è¡Œåºåˆ—åŒ–å’Œå°†XMLååºåˆ—åŒ–æ˜¯ä¸€ä»¶å¤šä¹ˆç®€å•çš„äº‹æƒ…ã€‚
 
 <font color="#003D79">This is a very quick introduction to XBlink. Skim read it to get an idea of how simple it is to convert objects to XML and back again. I'm sure you'll have questions afterwards.</font>
 
 ----
 <p align="right">[#Top]</p>
-=`½¨Á¢Òª±»ĞòÁĞ»¯µÄÀà`=
+=`å»ºç«‹è¦è¢«åºåˆ—åŒ–çš„ç±»`=
 == <font color="#003D79">Create classes to be serialized</font> ==
 
-ÕâÀïÓĞÒ»Ğ©¼òµ¥µÄÀà£¬XBlink¿ÉÒÔ¶ÔÆäĞòÁĞ»¯ºÍ·´ĞòÁĞ»¯¡£
+è¿™é‡Œæœ‰ä¸€äº›ç®€å•çš„ç±»ï¼ŒXBlinkå¯ä»¥å¯¹å…¶åºåˆ—åŒ–å’Œååºåˆ—åŒ–ã€‚
 
 <font color="#003D79">Here's a couple of simple classes. XBlink can convert instances of these to XML and back again.</font>
 
@@ -36,13 +36,13 @@ public class PhoneNumber {
 }
 }}}
 
-×¢Òâ£ºÕâĞ©×Ö¶Î¶¼ÊÇË½ÓĞµÄ¡£XBlink²»¹ØĞÄ×Ö¶ÎµÄ¿É¼ûĞÔ£¬getters»òÕßsettersÒ²²»ÊÇ±ØĞëµÄ¡£µ«ÊÇÄ¿Ç°µÄ°æ±¾ÖĞÄ¬ÈÏµÄ¹¹Ôìº¯ÊıÊÇ±ØĞëµÄ¡£
+æ³¨æ„ï¼šè¿™äº›å­—æ®µéƒ½æ˜¯ç§æœ‰çš„ã€‚XBlinkä¸å…³å¿ƒå­—æ®µçš„å¯è§æ€§ï¼Œgettersæˆ–è€…settersä¹Ÿä¸æ˜¯å¿…é¡»çš„ã€‚ä½†æ˜¯ç›®å‰çš„ç‰ˆæœ¬ä¸­é»˜è®¤çš„æ„é€ å‡½æ•°æ˜¯å¿…é¡»çš„ã€‚
 
 <font color="#003D79">Note: Notice that the fields are private. XBlink doesn't care about the visibility of the fields. No getters or setters are needed.But, XBlink does limit you to having a default constructor. </font>
 
 ----
 <p align="right">[#Top]</p>
-=`Îª×Ö¶ÎÌí¼Ó×¢ÊÍ`=
+=`ä¸ºå­—æ®µæ·»åŠ æ³¨é‡Š`=
 == <font color="#003D79">Add annotation to the field</font> ==
 
 {{{
@@ -69,10 +69,10 @@ public class PhoneNumber {
 
 ----
 <p align="right">[#Top]</p>
-=`½«¶ÔÏóĞòÁĞ»¯ÎªXML`=
+=`å°†å¯¹è±¡åºåˆ—åŒ–ä¸ºXML`=
 == <font color="#003D79">Serializing an object to XML</font> ==
 
-ÈÃÎÒÃÇĞÂ½¨Ò»¸öPersonµÄÊµÀı£¬²¢ÎªËûµÄ×Ö¶Î¸³Öµ£º
+è®©æˆ‘ä»¬æ–°å»ºä¸€ä¸ªPersonçš„å®ä¾‹ï¼Œå¹¶ä¸ºä»–çš„å­—æ®µèµ‹å€¼ï¼š
 
 <font color="#003D79">Let's create an instance of Person and populate its fields:</font>
 
@@ -92,7 +92,7 @@ joe.setPhone(phone);
 joe.setFax(fax);
 }}}
 
-ÏÖÔÚ£¬¿ªÊ¼½øĞĞĞòÁĞ»¯¡£
+ç°åœ¨ï¼Œå¼€å§‹è¿›è¡Œåºåˆ—åŒ–ã€‚
 
 <font color="#003D79">Now, to convert it to XML, all you have to do is make a simple call to XBlink:</font>
 
@@ -100,7 +100,7 @@ joe.setFax(fax);
 XBlink.toXml("C:/joe.xml", joe);
 }}}
 
-½á¹ûÈçÏÂ£º
+ç»“æœå¦‚ä¸‹ï¼š
 
 <font color="#003D79">The resulting XML looks like this:</font>
 
@@ -118,16 +118,16 @@ XBlink.toXml("C:/joe.xml", joe);
 </person>
 }}}
 
-¿´µ½ÁËÂğ£¬¾ÍÊÇÈç´Ë¼ò½à£¬Èç´Ë¼òµ¥¡£
+çœ‹åˆ°äº†å—ï¼Œå°±æ˜¯å¦‚æ­¤ç®€æ´ï¼Œå¦‚æ­¤ç®€å•ã€‚
 
 <font color="#003D79">It's that simple. Look at how clean the XML is.</font>
 
 ----
 <p align="right">[#Top]</p>
-=`½«XML·´ĞòÁĞ»¯Îª¶ÔÏó`=
+=`å°†XMLååºåˆ—åŒ–ä¸ºå¯¹è±¡`=
 == <font color="#003D79">Deserializing an object back from XML</font> ==
 
-¸ù¾İXMLÎÄ¼şÖĞĞÅÏ¢£¬ÖØ¹¹Õâ¸ö¶ÔÏó¡£
+æ ¹æ®XMLæ–‡ä»¶ä¸­ä¿¡æ¯ï¼Œé‡æ„è¿™ä¸ªå¯¹è±¡ã€‚
 
 <font color="#003D79">To reconstruct an object, purely from the XML:</font>
 
@@ -135,6 +135,6 @@ XBlink.toXml("C:/joe.xml", joe);
 Person joe = (Person) XBlink.fromXml("C:/joe.xml", Person.class);
 }}}
 
-ÔõÃ´Ñù£¬ÊÇ²»ÊÇÈç´Ë¼òµ¥£¡
+æ€ä¹ˆæ ·ï¼Œæ˜¯ä¸æ˜¯å¦‚æ­¤ç®€å•ï¼
 
 <font color="#003D79">And that's how simple XBlink is!</font>
