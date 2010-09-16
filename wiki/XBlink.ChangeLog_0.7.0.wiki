@@ -1,0 +1,20 @@
+#summary 0.7.0发布日志
+=Top=
+<p align="center"><font size=6>* 0.7.0发布日志 *</font></p>
+----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *pangwu86* (<font color="#080"> pangwu86@gmail.com </font>)</p>
+<wiki:toc max_depth="1"/>
+----
+
+<p align="right">[#Top]</p>
+=`发布日期`=
+2010-09-15
+
+----
+
+<p align="right">[#Top]</p>
+=`更新内容`=
+      # 修正了BUG。（详情见SVN更新记录）
+      # Map接口的实现，这样所有常用类型都已实现。
+      # DomDriver接口从XBlink中去除，因为项目发展方向的改变，这个接口暂时去掉。
+      # 各种Collection的测试用例补充。

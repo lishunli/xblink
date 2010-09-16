@@ -1,0 +1,18 @@
+#summary 0.5.0发布日志
+=Top=
+<p align="center"><font size=6>* 0.5.0发布日志 *</font></p>
+----
+<p align="right"> <font color="#AAA" size="1"> * By * </font>    *pangwu86* (<font color="#080"> pangwu86@gmail.com </font>)</p>
+<wiki:toc max_depth="1"/>
+----
+
+<p align="right">[#Top]</p>
+=`发布日期`=
+2010-08-11
+
+----
+
+<p align="right">[#Top]</p>
+=`更新内容`=
+      # 该版本作为第一个提供下载的版本，已经具有了一定实用性，算是个“半成品”，所以给了她一个0.5的称号。
+      # 实现了对基本类型，对象，数组，列表，Set的支持。（Map还不支持）
