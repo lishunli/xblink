@@ -32,13 +32,6 @@ public interface Adapter {
 	public Element next();
 
 	/**
-	 * 根据前缀查找Element
-	 * @param prefix 前缀
-	 * @return 根据前缀找到的Element
-	 */
-	public Element find(String prefix);
-
-	/**
 	 * 向流中写入一个元素
 	 * @param element 需要写入到流的Element
 	 */
