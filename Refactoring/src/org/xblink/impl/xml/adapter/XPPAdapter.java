@@ -70,14 +70,15 @@ public class XPPAdapter implements Adapter {
 	}
 
 	public static void main(String[] args) throws Exception {
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < 10; i++) {
 			System.out.println("反序列化BigXML_XBlink.xml，文件大小为79.1MB");
 			XPPAdapter xppAdapter = new XPPAdapter();
 			xppAdapter.setInputStream(new FileInputStream(new File(
-					"d:\\BigXML_XBlink2.xml")));
+					"d:\\BigXML_XBlink3.xml")));
 			long a = System.nanoTime();
+			int count=0;
 			while (true) {
-
+				count++;
 				Element element = xppAdapter.next();
 				if (element != null) {
 					//System.out.println(element.getName());
@@ -87,8 +88,8 @@ public class XPPAdapter implements Adapter {
 					break;
 				}
 			}
-			System.out.println("XBlinkXmlAdapter:");
-			System.out.println((System.nanoTime() - a) + "ns");
+			System.out.println("XppXmlAdapter:");
+			System.out.println((System.nanoTime() - a) + "ns,共解析"+count+"个元素");
 			a = System.nanoTime();
 			Document document = new SAXReader().read(new File(
 					"d:\\BigXML_XBlink3.xml"));
