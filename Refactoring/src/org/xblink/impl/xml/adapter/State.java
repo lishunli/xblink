@@ -6,8 +6,6 @@ package org.xblink.impl.xml.adapter;
  *
  */
 public class State {
-
-	private ActionCallBack actionCallBack;
 	private char mark;
 	public State(char mark){
 		this.mark=mark;
@@ -28,18 +26,5 @@ public class State {
 	 */
 	public void setMark(char mark) {
 		this.mark = mark;
-	}
-	/**
-	 * 设置状态被激活时的回调方法
-	 * @param actionCallBack
-	 */
-	public void setAction(ActionCallBack actionCallBack){
-		this.actionCallBack = actionCallBack;
-	}
-	/**
-	 * 运行状态的回调方法
-	 */
-	public void runAction(){
-		this.actionCallBack.run();
 	}
 }

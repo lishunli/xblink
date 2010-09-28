@@ -41,4 +41,9 @@ public interface Adapter {
 	 * @param element 写入完成的element
 	 */
 	public String putDone(Element element);
+	/**
+	 * 获得当前Element所处的层级
+	 * @return 用来表示层级的整数，根为1
+	 */
+	public int getHierarchy();
 }

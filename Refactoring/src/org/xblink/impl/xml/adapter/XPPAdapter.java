@@ -18,25 +18,46 @@ import org.xmlpull.v1.XmlPullParserException;
 public class XPPAdapter implements Adapter {
 
 	private MXParser mxParser = new MXParser();
-	private Element element=null;
+	private Element element = null;
+	private int hierarchy = 0;
+	private boolean isdone = false;
+
 	@Override
 	public Element next() {
-			try {
-				if(mxParser.next()==mxParser.START_TAG){
+		isdone = false;
+		try {
+			while (isdone == false) {
+				int next = mxParser.next();
+				if (next == mxParser.START_TAG) {
+					if (element != null) {
+						Element temp = element;
+						element = null;
+						return temp;
+					}
+					hierarchy++;
 					element = new Element();
 					XBlinkAdapterUtils.setElementName(element, mxParser);
 					XBlinkAdapterUtils.setElementAttributes(element, mxParser);
 				}
-				if(element==null&&mxParser.next()==mxParser.TEXT){
+				if (element != null && next == mxParser.TEXT) {
+					// System.out.println(mxParser.getText());
 					XBlinkAdapterUtils.setElementValue(element, mxParser);
+					Element temp = element;
+					element = null;
+					return temp;
 				}
-			} catch (XmlPullParserException e) {
-				return null;
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				if (next == mxParser.END_TAG) {
+					hierarchy--;
+				}
+				// System.out.println(mxParser.getText());
 			}
-			return element;
+		} catch (XmlPullParserException e) {
+			return null;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return element;
 	}
 
 	@Override
@@ -70,32 +91,39 @@ public class XPPAdapter implements Adapter {
 	}
 
 	public static void main(String[] args) throws Exception {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 1; i++) {
 			System.out.println("反序列化BigXML_XBlink.xml，文件大小为79.1MB");
 			XPPAdapter xppAdapter = new XPPAdapter();
 			xppAdapter.setInputStream(new FileInputStream(new File(
-					"d:\\BigXML_XBlink3.xml")));
+					"d:\\BigXML_XBlink.xml")));
 			long a = System.nanoTime();
-			int count=0;
+			int count = 0;
 			while (true) {
 				count++;
 				Element element = xppAdapter.next();
 				if (element != null) {
-					//System.out.println(element.getName());
-					//System.out.println(element.getAttributes());
-					//System.out.println(element.getValue());
+					System.out.println(element.getName());
+					System.out.println(element.getAttributes());
+					System.out.println(element.getValue());
+					System.out.println(xppAdapter.getHierarchy());
 				} else {
 					break;
 				}
 			}
 			System.out.println("XppXmlAdapter:");
-			System.out.println((System.nanoTime() - a) + "ns,共解析"+count+"个元素");
+			System.out.println((System.nanoTime() - a) + "ns,共解析" + count
+					+ "个元素");
 			a = System.nanoTime();
 			Document document = new SAXReader().read(new File(
 					"d:\\BigXML_XBlink3.xml"));
 			System.out.println("Dom4j:");
 			System.out.println((System.nanoTime() - a) + "ns");
 		}
+	}
+
+	@Override
+	public int getHierarchy() {
+		return hierarchy;
 	}
 
 }
