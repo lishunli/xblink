@@ -28,7 +28,7 @@ public class XMLWriter {
 	 * @param obj
 	 * @throws Exception
 	 */
-	public void writeXML(OutputStream outputStream, Object obj) {
+	public static void writeXML(OutputStream outputStream, Object obj) {
 		try {
 			writeStart(outputStream, obj, true, "UTF-8");
 		} catch (Exception e) {
@@ -44,8 +44,7 @@ public class XMLWriter {
 	 * @param encoding
 	 * @throws Exception
 	 */
-	private void writeStart(OutputStream out, Object obj, boolean formatXml, String encoding)
-			throws Exception {
+	private static void writeStart(OutputStream out, Object obj, boolean formatXml, String encoding) throws Exception {
 		// 解析过的对象，方便其他对象引用
 		Map<Integer, ReferenceObject> referenceObjects = new HashMap<Integer, ReferenceObject>();
 		// 传递信息对象
@@ -72,7 +71,7 @@ public class XMLWriter {
 			}
 			// 开始序列化
 			writer.writeStartDocument();
-			new XMLObjectWriter().write(obj, writer, null, transferInfo);
+			new XMLSerializer().serialize(obj, writer, null, transferInfo);
 			writer.writeEndDocument();
 		} finally {
 			// 去掉XRoot的信息
@@ -99,7 +98,7 @@ public class XMLWriter {
 	 * @param clz
 	 * @return
 	 */
-	private XMLCollection getCollection(Class<?> clz) {
+	private static XMLCollection getCollection(Class<?> clz) {
 		Class<?>[] interfaces = clz.getInterfaces();
 		for (Class<?> inter : interfaces) {
 			if (inter.equals(XMLCollection.List.getClz())) {

@@ -9,12 +9,12 @@ import org.xblink.EightBasicTypes;
 import org.xblink.XType;
 import org.xblink.annotations.XBlinkAlias;
 import org.xblink.annotations.XBlinkAsArray;
-import org.xblink.reader.XMLObjectReader;
+import org.xblink.reader.XMLDeserializer;
 import org.xblink.transfer.ReferenceObject;
 import org.xblink.transfer.TransferInfo;
 import org.xblink.util.ClassUtil;
 import org.xblink.util.NodeUtil;
-import org.xblink.writer.XMLObjectWriter;
+import org.xblink.writer.XMLSerializer;
 import org.xblink.writer.XMLWriterHelper;
 import org.xblink.xml.XMLNode;
 import org.xblink.xml.XMLNodeList;
@@ -96,7 +96,7 @@ public class XArray extends XType {
 			writer.writeStartElement(fieldName.toString());
 			// 数组内容
 			for (Object object : objs) {
-				new XMLObjectWriter().write(object, writer, null, transferInfo);
+				new XMLSerializer().serialize(object, writer, null, transferInfo);
 			}
 			// 后缀
 			writer.writeEndElement();
@@ -292,7 +292,7 @@ public class XArray extends XType {
 	private void setIntValue(Object result, Class<?> fieldClass, TransferInfo transferInfo,
 			int nodeListLength2, XMLNodeList nodeList2) throws Exception {
 		for (int idx = 0; idx < nodeListLength; idx++) {
-			Array.setInt(result, idx, (Integer) new XMLObjectReader().read(
+			Array.setInt(result, idx, (Integer) new XMLDeserializer().deserialize(
 					ClassUtil.getInstance(fieldClass, transferInfo.getXmlImplClasses()),
 					nodeList.item(transferInfo.getXmlAdapter(), idx * 2 + 1), transferInfo));
 		}
@@ -301,7 +301,7 @@ public class XArray extends XType {
 	private void setShortValue(Object result, Class<?> fieldClass, TransferInfo transferInfo,
 			int nodeListLength2, XMLNodeList nodeList2) throws Exception {
 		for (int idx = 0; idx < nodeListLength; idx++) {
-			Array.setShort(result, idx, (Short) new XMLObjectReader().read(
+			Array.setShort(result, idx, (Short) new XMLDeserializer().deserialize(
 					ClassUtil.getInstance(fieldClass, transferInfo.getXmlImplClasses()),
 					nodeList.item(transferInfo.getXmlAdapter(), idx * 2 + 1), transferInfo));
 		}
@@ -310,7 +310,7 @@ public class XArray extends XType {
 	private void setLongValue(Object result, Class<?> fieldClass, TransferInfo transferInfo,
 			int nodeListLength2, XMLNodeList nodeList2) throws Exception {
 		for (int idx = 0; idx < nodeListLength; idx++) {
-			Array.setLong(result, idx, (Long) new XMLObjectReader().read(
+			Array.setLong(result, idx, (Long) new XMLDeserializer().deserialize(
 					ClassUtil.getInstance(fieldClass, transferInfo.getXmlImplClasses()),
 					nodeList.item(transferInfo.getXmlAdapter(), idx * 2 + 1), transferInfo));
 		}
@@ -319,7 +319,7 @@ public class XArray extends XType {
 	private void setFloatValue(Object result, Class<?> fieldClass, TransferInfo transferInfo,
 			int nodeListLength2, XMLNodeList nodeList2) throws Exception {
 		for (int idx = 0; idx < nodeListLength; idx++) {
-			Array.setFloat(result, idx, (Float) new XMLObjectReader().read(
+			Array.setFloat(result, idx, (Float) new XMLDeserializer().deserialize(
 					ClassUtil.getInstance(fieldClass, transferInfo.getXmlImplClasses()),
 					nodeList.item(transferInfo.getXmlAdapter(), idx * 2 + 1), transferInfo));
 		}
@@ -328,7 +328,7 @@ public class XArray extends XType {
 	private void setDoubleValue(Object result, Class<?> fieldClass, TransferInfo transferInfo,
 			int nodeListLength2, XMLNodeList nodeList2) throws Exception {
 		for (int idx = 0; idx < nodeListLength; idx++) {
-			Array.setDouble(result, idx, (Double) new XMLObjectReader().read(
+			Array.setDouble(result, idx, (Double) new XMLDeserializer().deserialize(
 					ClassUtil.getInstance(fieldClass, transferInfo.getXmlImplClasses()),
 					nodeList.item(transferInfo.getXmlAdapter(), idx * 2 + 1), transferInfo));
 		}
@@ -337,7 +337,7 @@ public class XArray extends XType {
 	private void setByteValue(Object result, Class<?> fieldClass, TransferInfo transferInfo,
 			int nodeListLength2, XMLNodeList nodeList2) throws Exception {
 		for (int idx = 0; idx < nodeListLength; idx++) {
-			Array.setByte(result, idx, (Byte) new XMLObjectReader().read(
+			Array.setByte(result, idx, (Byte) new XMLDeserializer().deserialize(
 					ClassUtil.getInstance(fieldClass, transferInfo.getXmlImplClasses()),
 					nodeList.item(transferInfo.getXmlAdapter(), idx * 2 + 1), transferInfo));
 		}
@@ -346,7 +346,7 @@ public class XArray extends XType {
 	private void setCharValue(Object result, Class<?> fieldClass, TransferInfo transferInfo,
 			int nodeListLength2, XMLNodeList nodeList2) throws Exception {
 		for (int idx = 0; idx < nodeListLength; idx++) {
-			Array.setChar(result, idx, (Character) new XMLObjectReader().read(
+			Array.setChar(result, idx, (Character) new XMLDeserializer().deserialize(
 					ClassUtil.getInstance(fieldClass, transferInfo.getXmlImplClasses()),
 					nodeList.item(transferInfo.getXmlAdapter(), idx * 2 + 1), transferInfo));
 		}
@@ -355,7 +355,7 @@ public class XArray extends XType {
 	private void setBooleanValue(Object result, Class<?> fieldClass, TransferInfo transferInfo,
 			int nodeListLength2, XMLNodeList nodeList2) throws Exception {
 		for (int idx = 0; idx < nodeListLength; idx++) {
-			Array.setBoolean(result, idx, (Boolean) new XMLObjectReader().read(
+			Array.setBoolean(result, idx, (Boolean) new XMLDeserializer().deserialize(
 					ClassUtil.getInstance(fieldClass, transferInfo.getXmlImplClasses()),
 					nodeList.item(transferInfo.getXmlAdapter(), idx * 2 + 1), transferInfo));
 		}
@@ -389,7 +389,7 @@ public class XArray extends XType {
 	private void setValue(Object[] result, Class<?> fieldClass, TransferInfo transferInfo,
 			int nodeListLength, XMLNodeList nodeList) throws Exception {
 		for (int idx = 0; idx < nodeListLength; idx++) {
-			result[idx] = new XMLObjectReader().read(
+			result[idx] = new XMLDeserializer().deserialize(
 					ClassUtil.getInstance(fieldClass, transferInfo.getXmlImplClasses()),
 					nodeList.item(transferInfo.getXmlAdapter(), idx * 2 + 1), transferInfo);
 		}

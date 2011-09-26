@@ -39,7 +39,7 @@ public class XMLReader {
 	 * @param classLoader
 	 *            类加载器 return 对象
 	 */
-	public Object readXML(InputStream inputStream, Class<?> clz, ClassLoader classLoader) {
+	public static Object readXML(InputStream inputStream, Class<?> clz, ClassLoader classLoader) {
 		return readXML(inputStream, clz, new Class<?>[] {}, classLoader);
 	}
 
@@ -56,8 +56,7 @@ public class XMLReader {
 	 * 
 	 * @return 对象
 	 */
-	public Object readXML(InputStream inputStream, Class<?> clz, Class<?>[] implClasses,
-			ClassLoader classLoader) {
+	public static Object readXML(InputStream inputStream, Class<?> clz, Class<?>[] implClasses, ClassLoader classLoader) {
 		try {
 			return readStart(inputStream, new Class<?>[] { clz, null }, implClasses, classLoader);
 		} catch (Exception e) {
@@ -77,7 +76,7 @@ public class XMLReader {
 	 *            类加载器
 	 * @return 对象
 	 */
-	public Object readXML(InputStream inputStream, Class<?>[] clzs, ClassLoader classLoader) {
+	public static Object readXML(InputStream inputStream, Class<?>[] clzs, ClassLoader classLoader) {
 		return readXML(inputStream, clzs, new Class<?>[] {}, classLoader);
 	}
 
@@ -93,7 +92,7 @@ public class XMLReader {
 	 *            类加载器
 	 * @return 对象
 	 */
-	public Object readXML(InputStream inputStream, Class<?>[] clzs, Class<?>[] implClasses,
+	public static Object readXML(InputStream inputStream, Class<?>[] clzs, Class<?>[] implClasses,
 			ClassLoader classLoader) {
 		try {
 			return readStart(inputStream, clzs, implClasses, classLoader);
@@ -115,8 +114,8 @@ public class XMLReader {
 	 * 
 	 * @return 对象
 	 */
-	private Object readStart(InputStream in, Class<?>[] clzs, Class<?>[] implClasses,
-			ClassLoader classLoader) throws Exception {
+	private static Object readStart(InputStream in, Class<?>[] clzs, Class<?>[] implClasses, ClassLoader classLoader)
+			throws Exception {
 		// 解析过的对象，方便其他对象引用
 		Map<Integer, ReferenceObject> referenceObjects = new HashMap<Integer, ReferenceObject>();
 		// 接口实现类集合初始化
@@ -138,37 +137,31 @@ public class XMLReader {
 		transferInfo.setClassLoaderSwitcher(classLoaderSwitcher);
 		transferInfo.setXmlAdapter(xmlAdapter);
 		// XML类对象反序列工具类初始化
-		XMLObjectReader xmlObjectRead = new XMLObjectReader();
+		XMLDeserializer xmlObjectRead = new XMLDeserializer();
 		try {
 			XMLDocument document = xmlAdapter.getDocument(in);
 			XMLNode baseNode = document.getFirstChild(xmlAdapter);
 			String root = baseNode.getNodeName(xmlAdapter);
 			if (root.equals(Constants.ROOT)) {
-				XMLNode rootCollectionNode = baseNode.getFirstChild(xmlAdapter).getNextSibling(
-						xmlAdapter);
+				XMLNode rootCollectionNode = baseNode.getFirstChild(xmlAdapter).getNextSibling(xmlAdapter);
 				String rootCollectionNodeName = rootCollectionNode.getNodeName(xmlAdapter);
 				XRoot xmlRoot = new XRoot();
 				// 判断是否是集合类型，是的话放入root对象中再进行序列化
 				if (rootCollectionNodeName.endsWith(Constants.ARRAY)) {
-					Object[] result = ((XRoot) xmlObjectRead.read(xmlRoot, baseNode, transferInfo))
-							.getArray();
+					Object[] result = ((XRoot) xmlObjectRead.deserialize(xmlRoot, baseNode, transferInfo)).getArray();
 					return result;
 				} else if (rootCollectionNodeName.endsWith(Constants.LIST)) {
-					List<?> result = ((XRoot) xmlObjectRead.read(xmlRoot, baseNode, transferInfo))
-							.getList();
+					List<?> result = ((XRoot) xmlObjectRead.deserialize(xmlRoot, baseNode, transferInfo)).getList();
 					return result;
 				} else if (rootCollectionNodeName.endsWith(Constants.SET)) {
-					Set<?> result = ((XRoot) xmlObjectRead.read(xmlRoot, baseNode, transferInfo))
-							.getSet();
+					Set<?> result = ((XRoot) xmlObjectRead.deserialize(xmlRoot, baseNode, transferInfo)).getSet();
 					return result;
 				} else if (rootCollectionNodeName.endsWith(Constants.MAP)) {
-					Map<?, ?> result = ((XRoot) xmlObjectRead.read(xmlRoot, baseNode, transferInfo))
-							.getMap();
+					Map<?, ?> result = ((XRoot) xmlObjectRead.deserialize(xmlRoot, baseNode, transferInfo)).getMap();
 					return result;
 				}
 			}
-			return xmlObjectRead.read(
-					ClassUtil.getInstance(clzs[0], transferInfo.getXmlImplClasses()), baseNode,
+			return xmlObjectRead.deserialize(ClassUtil.getInstance(clzs[0], transferInfo.getXmlImplClasses()), baseNode,
 					transferInfo);
 		} finally {
 			// 去掉XRoot的信息
