@@ -21,7 +21,7 @@ import org.xblink.xml.XMLNode;
  * @author pangwu86(pangwu86@gmail.com)
  * 
  */
-public class XMLObjectReader extends XMLObject {
+public class XMLDeserializer extends XMLObject {
 
 	/**
 	 * 对象为单位读取.
@@ -31,7 +31,7 @@ public class XMLObjectReader extends XMLObject {
 	 * @param transferInfo
 	 * @throws Exception
 	 */
-	public Object read(Object obj, XMLNode baseNode, TransferInfo transferInfo) throws Exception {
+	public Object deserialize(Object obj, XMLNode baseNode, TransferInfo transferInfo) throws Exception {
 		Map<Integer, ReferenceObject> referenceObjects = transferInfo.getReferenceObjects();
 		// 是否是引用对象
 		String refNo = NodeUtil.getAttributeValue(baseNode, Constants.OBJ_REFERENCE,

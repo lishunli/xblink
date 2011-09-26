@@ -31,7 +31,7 @@ public class XBlink {
 	 *            实例对象
 	 */
 	public static void toXml(String filePath, Object obj) {
-		new XMLWriter().writeXML(getOutputStream(filePath), obj);
+		XMLWriter.writeXML(getOutputStream(filePath), obj);
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class XBlink {
 	 *            实例对象
 	 */
 	public static void toXml(OutputStream outputStream, Object obj) {
-		new XMLWriter().writeXML(outputStream, obj);
+		XMLWriter.writeXML(outputStream, obj);
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class XBlink {
 	 * @return 对象
 	 */
 	public static Object fromXml(String filePath, Class<?> clz) {
-		return new XMLReader().readXML(getInputStream(filePath), clz, null);
+		return XMLReader.readXML(getInputStream(filePath), clz, null);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class XBlink {
 	 * @return 对象
 	 */
 	public static Object fromXml(String filePath, Class<?>[] clzs) {
-		return new XMLReader().readXML(getInputStream(filePath), clzs, null);
+		return XMLReader.readXML(getInputStream(filePath), clzs, null);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class XBlink {
 	 * @return 对象
 	 */
 	public static Object fromXml(String filePath, Class<?> clz, Class<?>[] implClasses) {
-		return new XMLReader().readXML(getInputStream(filePath), clz, implClasses, null);
+		return XMLReader.readXML(getInputStream(filePath), clz, implClasses, null);
 	}
 
 	/**
@@ -92,14 +92,14 @@ public class XBlink {
 	 * 
 	 * @param filePath
 	 *            文件路径
-	* @param clzs
+	 * @param clzs
 	 *            生成对象的Class(Map集合使用，第一个参数是Key的类型，第二个参数是Value的类型)
 	 * @param implClasses
 	 *            生成对象中包含的所有接口实现类
 	 * @return 对象
 	 */
 	public static Object fromXml(String filePath, Class<?>[] clzs, Class<?>[] implClasses) {
-		return new XMLReader().readXML(getInputStream(filePath), clzs, implClasses, null);
+		return XMLReader.readXML(getInputStream(filePath), clzs, implClasses, null);
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class XBlink {
 	 * @return 对象
 	 */
 	public static Object fromXml(InputStream inputStream, Class<?> clz) {
-		return new XMLReader().readXML(inputStream, clz, null);
+		return XMLReader.readXML(inputStream, clz, null);
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class XBlink {
 	 * @return 对象
 	 */
 	public static Object fromXml(InputStream inputStream, Class<?>[] clzs) {
-		return new XMLReader().readXML(inputStream, clzs, null);
+		return XMLReader.readXML(inputStream, clzs, null);
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class XBlink {
 	 * @return 对象
 	 */
 	public static Object fromXml(InputStream inputStream, Class<?> clz, Class<?>[] implClasses) {
-		return new XMLReader().readXML(inputStream, clz, implClasses, null);
+		return XMLReader.readXML(inputStream, clz, implClasses, null);
 	}
 
 	/**
@@ -155,7 +155,7 @@ public class XBlink {
 	 * @return 对象
 	 */
 	public static Object fromXml(InputStream inputStream, Class<?>[] clzs, Class<?>[] implClasses) {
-		return new XMLReader().readXML(inputStream, clzs, implClasses, null);
+		return XMLReader.readXML(inputStream, clzs, implClasses, null);
 	}
 
 	/**
@@ -170,7 +170,7 @@ public class XBlink {
 	 * @return 对象
 	 */
 	public static Object fromXml(String filePath, Class<?> clz, ClassLoader classLoader) {
-		return new XMLReader().readXML(getInputStream(filePath), clz, classLoader);
+		return XMLReader.readXML(getInputStream(filePath), clz, classLoader);
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class XBlink {
 	 * @return 对象
 	 */
 	public static Object fromXml(String filePath, Class<?>[] clzs, ClassLoader classLoader) {
-		return new XMLReader().readXML(getInputStream(filePath), clzs, classLoader);
+		return XMLReader.readXML(getInputStream(filePath), clzs, classLoader);
 	}
 
 	/**
@@ -202,9 +202,8 @@ public class XBlink {
 	 *            用户的类加载器
 	 * @return 对象
 	 */
-	public static Object fromXml(String filePath, Class<?> clz, Class<?>[] implClasses,
-			ClassLoader classLoader) {
-		return new XMLReader().readXML(getInputStream(filePath), clz, implClasses, classLoader);
+	public static Object fromXml(String filePath, Class<?> clz, Class<?>[] implClasses, ClassLoader classLoader) {
+		return XMLReader.readXML(getInputStream(filePath), clz, implClasses, classLoader);
 	}
 
 	/**
@@ -220,9 +219,8 @@ public class XBlink {
 	 *            用户的类加载器
 	 * @return 对象
 	 */
-	public static Object fromXml(String filePath, Class<?>[] clzs, Class<?>[] implClasses,
-			ClassLoader classLoader) {
-		return new XMLReader().readXML(getInputStream(filePath), clzs, implClasses, classLoader);
+	public static Object fromXml(String filePath, Class<?>[] clzs, Class<?>[] implClasses, ClassLoader classLoader) {
+		return XMLReader.readXML(getInputStream(filePath), clzs, implClasses, classLoader);
 	}
 
 	/**
@@ -237,7 +235,7 @@ public class XBlink {
 	 * @return 对象
 	 */
 	public static Object fromXml(InputStream inputStream, Class<?> clz, ClassLoader classLoader) {
-		return new XMLReader().readXML(inputStream, clz, classLoader);
+		return XMLReader.readXML(inputStream, clz, classLoader);
 	}
 
 	/**
@@ -245,14 +243,14 @@ public class XBlink {
 	 * 
 	 * @param inputStream
 	 *            包含文件信息的输 入流
-	* @param clzs
+	 * @param clzs
 	 *            生成对象的Class(Map集合使用，第一个参数是Key的类型，第二个参数是Value的类型)
 	 * @param classLoader
 	 *            用户的类加载器
 	 * @return 对象
 	 */
 	public static Object fromXml(InputStream inputStream, Class<?>[] clzs, ClassLoader classLoader) {
-		return new XMLReader().readXML(inputStream, clzs, classLoader);
+		return XMLReader.readXML(inputStream, clzs, classLoader);
 	}
 
 	/**
@@ -268,9 +266,8 @@ public class XBlink {
 	 *            用户的类加载器
 	 * @return 对象
 	 */
-	public static Object fromXml(InputStream inputStream, Class<?> clz, Class<?>[] implClasses,
-			ClassLoader classLoader) {
-		return new XMLReader().readXML(inputStream, clz, implClasses, classLoader);
+	public static Object fromXml(InputStream inputStream, Class<?> clz, Class<?>[] implClasses, ClassLoader classLoader) {
+		return XMLReader.readXML(inputStream, clz, implClasses, classLoader);
 	}
 
 	/**
@@ -288,7 +285,7 @@ public class XBlink {
 	 */
 	public static Object fromXml(InputStream inputStream, Class<?>[] clzs, Class<?>[] implClasses,
 			ClassLoader classLoader) {
-		return new XMLReader().readXML(inputStream, clzs, implClasses, classLoader);
+		return XMLReader.readXML(inputStream, clzs, implClasses, classLoader);
 	}
 
 	/**

@@ -10,13 +10,13 @@ import org.xblink.Constants;
 import org.xblink.XType;
 import org.xblink.annotations.XBlinkAlias;
 import org.xblink.annotations.XBlinkAsList;
-import org.xblink.reader.XMLObjectReader;
+import org.xblink.reader.XMLDeserializer;
 import org.xblink.transfer.ReferenceObject;
 import org.xblink.transfer.TransferInfo;
 import org.xblink.util.ClassType;
 import org.xblink.util.ClassUtil;
 import org.xblink.util.NodeUtil;
-import org.xblink.writer.XMLObjectWriter;
+import org.xblink.writer.XMLSerializer;
 import org.xblink.writer.XMLWriterHelper;
 import org.xblink.xml.XMLNode;
 import org.xblink.xml.XMLNodeList;
@@ -88,7 +88,7 @@ public class XList extends XType {
 			writer.writeStartElement(fieldName.toString());
 			// 列表内容
 			for (Object object : objList) {
-				new XMLObjectWriter().write(object, writer, null, transferInfo);
+				new XMLSerializer().serialize(object, writer, null, transferInfo);
 			}
 			// 后缀
 			writer.writeEndElement();
@@ -183,7 +183,7 @@ public class XList extends XType {
 						nodeList.item(transferInfo.getXmlAdapter(), idx * 2 + 1),
 						transferInfo.getClassLoaderSwitcher(), transferInfo.getXmlAdapter()));
 			} else {
-				result.add(new XMLObjectReader().read(
+				result.add(new XMLDeserializer().deserialize(
 						ClassUtil.getInstance(fieldInnerClass, transferInfo.getXmlImplClasses()),
 						nodeList.item(transferInfo.getXmlAdapter(), idx * 2 + 1), transferInfo));
 			}

@@ -84,8 +84,7 @@ public class XMLWriterHelper {
 	 * @param values
 	 * @throws XMLStreamException
 	 */
-	public void writeStartElement(String localName, String[] localNames, String[] values)
-			throws XMLStreamException {
+	public void writeStartElement(String localName, String[] localNames, String[] values) throws XMLStreamException {
 		writeBR();
 		writeIndent();
 		indentIndex++;

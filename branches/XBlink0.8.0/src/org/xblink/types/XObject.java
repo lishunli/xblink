@@ -4,11 +4,11 @@ import java.lang.reflect.Field;
 
 import org.xblink.XType;
 import org.xblink.annotations.XBlinkAsObject;
-import org.xblink.reader.XMLObjectReader;
+import org.xblink.reader.XMLDeserializer;
 import org.xblink.transfer.TransferInfo;
 import org.xblink.util.ClassUtil;
 import org.xblink.util.NodeUtil;
-import org.xblink.writer.XMLObjectWriter;
+import org.xblink.writer.XMLSerializer;
 import org.xblink.writer.XMLWriterHelper;
 import org.xblink.xml.XMLNode;
 
@@ -36,7 +36,7 @@ public class XObject extends XType {
 			if (isFieldEmpty(field, obj)) {
 				continue;
 			}
-			new XMLObjectWriter().write(field.get(obj), writer, ClassUtil.getFieldName(field)
+			new XMLSerializer().serialize(field.get(obj), writer, ClassUtil.getFieldName(field)
 					.toString(), transferInfo);
 		}
 	}
@@ -49,7 +49,7 @@ public class XObject extends XType {
 			if (null == tarNode) {
 				continue;
 			}
-			Object value = new XMLObjectReader().read(
+			Object value = new XMLDeserializer().deserialize(
 					ClassUtil.getInstance(field.getType(), transferInfo.getXmlImplClasses()),
 					tarNode, transferInfo);
 			field.set(obj, value);

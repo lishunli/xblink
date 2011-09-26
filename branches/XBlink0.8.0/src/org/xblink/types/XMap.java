@@ -10,13 +10,13 @@ import org.xblink.Constants;
 import org.xblink.XType;
 import org.xblink.annotations.XBlinkAlias;
 import org.xblink.annotations.XBlinkAsMap;
-import org.xblink.reader.XMLObjectReader;
+import org.xblink.reader.XMLDeserializer;
 import org.xblink.transfer.ReferenceObject;
 import org.xblink.transfer.TransferInfo;
 import org.xblink.util.ClassType;
 import org.xblink.util.ClassUtil;
 import org.xblink.util.NodeUtil;
-import org.xblink.writer.XMLObjectWriter;
+import org.xblink.writer.XMLSerializer;
 import org.xblink.writer.XMLWriterHelper;
 import org.xblink.xml.XMLNode;
 import org.xblink.xml.XMLNodeList;
@@ -91,9 +91,9 @@ public class XMap extends XType {
 				// entry start
 				writer.writeStartElement(Constants.MAP_ENTRY);
 				// key
-				new XMLObjectWriter().write(key, writer, null, transferInfo);
+				new XMLSerializer().serialize(key, writer, null, transferInfo);
 				// value
-				new XMLObjectWriter().write(objMap.get(key), writer, null, transferInfo);
+				new XMLSerializer().serialize(objMap.get(key), writer, null, transferInfo);
 				// entry end
 				writer.writeEndElement();
 			}
@@ -189,7 +189,7 @@ public class XMap extends XType {
 				key = NodeUtil.getObject(keyNode, transferInfo.getClassLoaderSwitcher(),
 						transferInfo.getXmlAdapter());
 			} else {
-				key = new XMLObjectReader().read(
+				key = new XMLDeserializer().deserialize(
 						ClassUtil.getInstance(fieldInnerClass1, transferInfo.getXmlImplClasses()),
 						keyNode, transferInfo);
 			}
@@ -198,7 +198,7 @@ public class XMap extends XType {
 				value = NodeUtil.getObject(valueNode, transferInfo.getClassLoaderSwitcher(),
 						transferInfo.getXmlAdapter());
 			} else {
-				value = new XMLObjectReader().read(
+				value = new XMLDeserializer().deserialize(
 						ClassUtil.getInstance(fieldInnerClass2, transferInfo.getXmlImplClasses()),
 						valueNode, transferInfo);
 			}

@@ -19,7 +19,7 @@ import org.xblink.util.ClassUtil;
  * @author pangwu86(pangwu86@gmail.com)
  * 
  */
-public class XMLObjectWriter extends XMLObject {
+public class XMLSerializer extends XMLObject {
 
 	/**
 	 * 对象为单位写入.
@@ -30,7 +30,7 @@ public class XMLObjectWriter extends XMLObject {
 	 * @param transferInfo
 	 * @throws Exception
 	 */
-	public void write(Object obj, XMLWriterHelper writer, String objectName,
+	public void serialize(Object obj, XMLWriterHelper writer, String objectName,
 			TransferInfo transferInfo) throws Exception {
 		Map<Integer, ReferenceObject> referenceObjects = transferInfo.getReferenceObjects();
 		// 记录解析过的Object
