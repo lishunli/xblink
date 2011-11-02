@@ -6,7 +6,6 @@ import java.io.Writer;
 import org.xblink.core.doc.AbstractDocWriter;
 import org.xblink.rep.org.xmlpull.mxp1_serializer.MXSerializer;
 import org.xblink.rep.org.xmlpull.v1.XmlSerializer;
-import org.xblink.util.StringUtil;
 
 /**
  * XML格式Writer，基于XPP3的MXSerializer实现。
@@ -22,8 +21,9 @@ public class XPP3Writer extends AbstractDocWriter {
 		innerWriter = new MXSerializer();
 		try {
 			innerWriter.setOutput(writer);
-		} catch (Exception e) {
-			throw new RuntimeException("XPP3Writer无法初始化。", e);
+		}
+		catch (Exception e) {
+			throw new RuntimeException("XPP3Writer Unable To Initialize", e);
 		}
 	}
 
@@ -61,7 +61,9 @@ public class XPP3Writer extends AbstractDocWriter {
 	}
 
 	public void writeAttribute(String name, String value) throws Exception {
-		innerWriter.attribute(null, name, value);
+		if (null != value) {
+			innerWriter.attribute(null, name, value);
+		}
 	}
 
 	public void writeText(String text) throws Exception {
@@ -69,17 +71,17 @@ public class XPP3Writer extends AbstractDocWriter {
 	}
 
 	public void writeElementText(String tagName, String text) throws Exception {
-		String current = text == null ? "" : text.trim();
+		boolean isNull = (null == text);
 		writeBR();
 		writeIndent();
-		if (StringUtil.isBlankStr(current)) {
+		if (isNull) {
 			innerWriter.startTag(null, tagName);
 			innerWriter.endTag(null, tagName);
-			return;
+		} else {
+			innerWriter.startTag(null, tagName);
+			innerWriter.text(text);
+			innerWriter.endTag(null, tagName);
 		}
-		innerWriter.startTag(null, tagName);
-		innerWriter.text(text);
-		innerWriter.endTag(null, tagName);
 	}
 
 	public void writeReference(String tagName, String refName, String text) throws Exception {
@@ -88,8 +90,7 @@ public class XPP3Writer extends AbstractDocWriter {
 		indentIndex--;
 	}
 
-	public void close() throws Exception {
-	}
+	public void close() throws Exception {}
 
 	public void flush() throws Exception {
 		innerWriter.flush();

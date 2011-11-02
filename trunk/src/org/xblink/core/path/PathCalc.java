@@ -31,7 +31,7 @@ public class PathCalc {
 			int dif = 0;
 			// 从头开始比较
 			for (int i = 0; i < tDepth; i++) {
-				if (currentPath[i] != targetPath[i]) {
+				if (!currentPath[i].equals(targetPath[i])) {
 					// 分支路口
 					dd2 = tDepth - i;
 					dif = i;
@@ -52,7 +52,7 @@ public class PathCalc {
 			int dif = 0;
 			// 从头开始比较
 			for (int i = 0; i < cDepth; i++) {
-				if (currentPath[i] != targetPath[i]) {
+				if (!currentPath[i].equals(targetPath[i])) {
 					// 分支路口
 					dif = i;
 					break;

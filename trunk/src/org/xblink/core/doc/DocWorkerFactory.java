@@ -1,6 +1,7 @@
 package org.xblink.core.doc;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Reader;
 import java.io.Writer;
 import java.lang.reflect.Constructor;
@@ -21,8 +22,7 @@ import org.xblink.util.StringUtil;
  */
 public class DocWorkerFactory {
 
-	private DocWorkerFactory() {
-	}
+	private DocWorkerFactory() {}
 
 	private static Map<String, String> implMap = new HashMap<String, String>();
 
@@ -34,17 +34,28 @@ public class DocWorkerFactory {
 		implMap.put("xml.writer", "XPP3Writer");
 		implMap.put("xml.reader", "XPP3Reader");
 		// 读取配置文件，加载其他实现类
+		InputStream in = null;
 		try {
-			Properties prop = new Properties();
-			prop.load(DocWorkerFactory.class.getResourceAsStream("/xblink.properties"));
-			Enumeration<Object> em = prop.keys();
-			while (em.hasMoreElements()) {
-				String key = (String) em.nextElement();
-				String value = prop.getProperty(key);
-				implMap.put(key.toLowerCase(), value);
+			in = DocWorkerFactory.class.getResourceAsStream("/xblink.properties");
+			if (null != in) {
+				Properties prop = new Properties();
+				prop.load(in);
+				Enumeration<Object> em = prop.keys();
+				while (em.hasMoreElements()) {
+					String key = (String) em.nextElement();
+					String value = prop.getProperty(key);
+					implMap.put(key.toLowerCase(), value);
+				}
 			}
-		} catch (IOException e) {
-			//
+		}
+		catch (IOException e) {}
+		finally {
+			if (in != null) {
+				try {
+					in.close();
+				}
+				catch (Throwable e) {}
+			}
 		}
 	}
 
@@ -55,7 +66,8 @@ public class DocWorkerFactory {
 	private static DocWriter findDocWriterByDocTypeName(Writer writer, String docTypeName) {
 		String writerName = implMap.get(docTypeName.toLowerCase() + W);
 		if (StringUtil.isBlankStr(writerName)) {
-			throw new UnsupportedOperationException(String.format("没有找到%s格式的Writer。", docTypeName));
+			throw new UnsupportedOperationException(String.format(	"Can't find the writer [%s]",
+																	docTypeName));
 		}
 		return (DocWriter) getInstance(writer, Writer.class, writerName, WRITER_IMPL_CLASS_NAME);
 	}
@@ -63,19 +75,24 @@ public class DocWorkerFactory {
 	private static DocReader findDocReaderByDocTypeName(Reader reader, String docTypeName) {
 		String readerName = implMap.get(docTypeName.toLowerCase() + R);
 		if (StringUtil.isBlankStr(readerName)) {
-			throw new UnsupportedOperationException(String.format("没有找到%s格式的Reader。", docTypeName));
+			throw new UnsupportedOperationException(String.format(	"Can't find the reader [%s]",
+																	docTypeName));
 		}
 		return (DocReader) getInstance(reader, Reader.class, readerName, READER_IMPL_CLASS_NAME);
 	}
 
-	private static Object getInstance(Object initarg, Class<?> paramClz, String wName, String implClassName) {
+	private static Object getInstance(	Object initarg,
+										Class<?> paramClz,
+										String wName,
+										String implClassName) {
 		String className = String.format(implClassName, wName);
 		Constructor<?> constructor = getConstructor(className, paramClz);
 		Object instance = null;
 		try {
 			instance = constructor.newInstance(initarg);
-		} catch (Exception e) {
-			throw new RuntimeException(String.format("[%s]无法进行实例化。", className), e);
+		}
+		catch (Exception e) {
+			throw new RuntimeException(String.format("[%s] can't instantiation", className), e);
 		}
 		return instance;
 	}
@@ -85,8 +102,10 @@ public class DocWorkerFactory {
 		try {
 			Class<?> clz = Class.forName(className);
 			constructor = clz.getDeclaredConstructor(paramClz);
-		} catch (Exception e) {
-			throw new RuntimeException(String.format("没有找到[%s]这个实现类，无法执行后续操作。", className), e);
+		}
+		catch (Exception e) {
+			throw new RuntimeException(String.format(	"Can't find the impl class for [%s]",
+														className), e);
 		}
 		return constructor;
 	}
